@@ -10,3 +10,7 @@ Service (Worker):
     Figuring the logic to complete the task
     Only concern with the task
     Return completed work to the manager
+
+Spring bean:
+    A class that has to be instantiated
+    @Component / @Service
