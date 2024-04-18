@@ -1,4 +1,4 @@
-version: "2"
+version: "3.8"
 
 services:
   app:
@@ -9,6 +9,8 @@ services:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://db:5432/demo_db'
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: your_password
+    networks:
+      - app-network
     ports:
       - "8080:8080"
     depends_on:
@@ -19,11 +21,18 @@ services:
     environment:
       POSTGRES_PASSWORD: your_password
       POSTGRES_USER: postgres
-      POSTGRES_DB: demo_db
+      POSTGRES_DB: student
+      PGUSER: postgres
     ports:
       - "5432:5432"
+    networks:
+      - app-network
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
