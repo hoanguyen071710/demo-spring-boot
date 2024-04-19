@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class StudentService {
+	private final StudentRepository studentRepository;
+
+	public StudentService(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
+
 	@GetMapping
 	public List<Student> getStudents() {
-		return List.of(
-			new Student(
-				1L,
-				"Student1",
-				"Student1@gmail.com",
-				LocalDate.of(2000, Month.FEBRUARY, 13),
-				21
-			)
-		);
+		return studentRepository.findAll();
 	}   
 }
